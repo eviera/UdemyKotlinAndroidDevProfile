@@ -35,9 +35,9 @@ que afectan a todos los objetos
 - Para que varios objetos queden alineados, seleccionarlos y con boton derecho elegir _Align vertical centers_. 
 
 
-
-
-
+## Código
+- Para pasar un objeto entre activities, hay que implementar _Parcelable_ y para que sea mas sencillo
+de usar, hay que indicarle al Idea que implemente los metodos necesarios (Add Parcelable implementation)
 
 
 
