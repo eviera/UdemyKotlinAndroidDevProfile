@@ -38,6 +38,33 @@ que afectan a todos los objetos
 ## Código
 - Para pasar un objeto entre activities, hay que implementar _Parcelable_ y para que sea mas sencillo
 de usar, hay que indicarle al Idea que implemente los metodos necesarios (Add Parcelable implementation)
+- Cuando una actividad cambia la orientación, se destruye. Para preservar los atributos de la actividad, hay que implementar
+dos metodos: _onSaveInstanceState_ y _onRestoreInstanceState_ que permiten guardar un Parcelable que se
+recupera automáticamente al recrear la actividad
+```kotlin
+    lateinit var player: Player
+
+    /**
+     * Cuando se rota se salva el estado
+     */
+    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
+        super.onSaveInstanceState(outState, outPersistentState)
+        outState?.putParcelable(EXTRA_PLAYER, player)
+    }
+
+    /**
+     * Cuando se recrea la actividad, levanta el estado grabado
+     */
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if (savedInstanceState != null) {
+            player = savedInstanceState.getParcelable(EXTRA_PLAYER)
+        }
+    }
+```
+
+## Links
+- Android Asset Studio: https://romannurik.github.io
 
 
 
